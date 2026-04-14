@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" alt="Project Logo" width="200"/>
+  <img src="assets/DL_logo.png" alt="Project Logo" width="200"/>
 </p>
 
 <h1 align="center">Nome del Progetto</h1>
