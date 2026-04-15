@@ -1,102 +1,69 @@
-# 🧠 [Nome del Progetto]
+<p align="center">
+  <img src="assets/DL_logo.png" alt="Project Logo" width="200"/>
+</p>
 
-**Corso di Deep Learning — A.A. 2025/2026**  
-**Università degli Studi di Cagliari**
+<h1 align="center">Nome del Progetto</h1>
 
----
+<p align="center">
+  <b>Corso di Deep Learning — A.A. 2025/2026</b><br>
+  Università degli Studi di Cagliari
+</p>
 
-## 👥 Team: [Nome del Gruppo]
-
----
-
-## 📌 Descrizione del Progetto
-
-Breve descrizione del progetto (2-3 frasi). Indicare il problema affrontato, il tipo di approccio utilizzato (classificazione, generazione, reinforcement learning, ecc.) e il dataset impiegato.
-
----
-
-## 🔬 Domande di Ricerca
-
-1. **RQ1**: [Prima domanda di ricerca]
-2. **RQ2**: [Seconda domanda di ricerca (opzionale)]
-3. **RQ3**: [Terza domanda di ricerca (opzionale)]
+<p align="center">
+  <a href="https://link-alle-slides"><img src="https://img.shields.io/badge/📊_Slides-Presentazione-blue?style=for-the-badge" alt="Slides"/></a>
+  <a href="https://link-al-video"><img src="https://img.shields.io/badge/🎬_Video-Teaser-red?style=for-the-badge" alt="Video"/></a>
+  <a href="https://huggingface.co/spaces/username/nome-progetto"><img src="https://img.shields.io/badge/🤗_Demo-Gradio-orange?style=for-the-badge" alt="Demo Gradio"/></a>
+</p>
 
 ---
 
-## 📊 Dataset
+## Video Teaser
 
-- **Nome**: [Nome del dataset]
-- **Fonte**: [Link al dataset]
-- **Dimensione**: [Numero di campioni, dimensioni immagini, ecc.]
-- **Preprocessing**: Breve descrizione delle operazioni di preprocessing effettuate.
-
-> Se il dataset è troppo grande per essere incluso nella consegna, inserire un link OneDrive nella cartella `data/`.
+<p align="center">
+  <video src="assets/video.mp4" controls width="600"></video>
+</p>
 
 ---
 
-## 🏗️ Architettura del Modello
-
-Descrizione dell'architettura proposta. Includere:
-- Tipo di rete (CNN, GAN, Autoencoder, Transformer, RL agent, ecc.)
-- Componenti principali (encoder, decoder, discriminatore, ecc.)
-- Numero di parametri (approssimativo)
-- Funzione di loss e ottimizzatore utilizzati
-
----
-
-## 📈 Risultati Principali
-
-Riassunto dei risultati ottenuti. Fare riferimento a tabelle e grafici presenti nella cartella `results/`.
-
-| Modello | Metrica 1 | Metrica 2 | Metrica 3 |
-|---------|-----------|-----------|-----------|
-| Baseline | ... | ... | ... |
-| Modello proposto | ... | ... | ... |
-| Variante / Ablation | ... | ... | ... |
-
----
-
-## 🚀 Installazione e Riproduzione
-
-### Requisiti
+## Requisiti
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Struttura del Repository
+## Struttura del Repository
 
 ```
 project-name/
-├── README.md                    # Questo file
-├── requirements.txt             # Dipendenze Python
+├── README.md
+├── requirements.txt
 ├── config/
-│   └── config.yaml              # Configurazione iperparametri
+│   └── config.yaml                  # Configurazione iperparametri
 ├── data/
-│   ├── raw/                     # Dati grezzi (o link per il download)
-│   └── processed/               # Dati preprocessati
+│   ├── raw/                         # Dati grezzi (o link per il download)
+│   └── processed/                   # ← generato da preprocessing.ipynb
 ├── notebooks/
-│   ├── 01_exploratory_analysis.ipynb   # Analisi esplorativa
-│   ├── 02_training.ipynb               # Addestramento modelli
-│   └── 03_evaluation.ipynb             # Valutazione e confronto
-├── src/
-│   ├── data/                    # Script di preprocessing e dataloader
-│   ├── models/                  # Definizione delle architetture
-│   ├── training/                # Loop di addestramento e callback
-│   └── evaluation/              # Metriche e visualizzazioni
-├── results/
-│   ├── figures/                 # Grafici generati
-│   └── tables/                  # Tabelle risultati (CSV/JSON)
+│   ├── preprocessing.ipynb          # Preprocessing e analisi esplorativa → data/processed/
+│   ├── experiments.ipynb            # Addestramento modelli → experiments/exp_*/
+│   └── results.ipynb               # Valutazione e confronto → results/
+├── experiments/
+│   └── exp_YYYYMMDD_HHMMSS/        # Record di ogni esperimento
+│       ├── iperparametri.json
+│       ├── plot/                    # Grafici del training (loss, metriche, ...)
+│       └── models/                  # Pesi dei modelli salvati
+├── results/                         # ← generato da results.ipynb
+│   ├── figures/
+│   ├── tables/
+│   └── predictions/
 ├── demo/
-│   └── app.py                   # Demo Gradio
-├── saved_models/                # Modelli addestrati (.h5, .pt, .onnx)
-├── presentation/
-│   └── final_presentation.pptx  # Presentazione finale
-└── video/
-    └── teaser.mp4               # Video teaser (opzionale)
+│   └── app.py                       # Demo Gradio
+└── assets/
+    ├── logo.png
+    ├── slides.pptx
+    └── video.mp4
 ```
 
-### Come riprodurre gli esperimenti
+## Riproduzione degli esperimenti
 
 ```bash
 # 1. Clonare il repository
@@ -106,35 +73,15 @@ cd [repo-name]
 # 2. Installare le dipendenze
 pip install -r requirements.txt
 
-# 3. Scaricare il dataset (se non incluso)
-# Seguire le istruzioni nel file data/README.md
+# 3. Eseguire i notebook in ordine
+#    preprocessing.ipynb → experiments.ipynb → results.ipynb
 
-# 4. Eseguire il training
-python src/training/train.py --config config/config.yaml
-
-# 5. Eseguire la valutazione
-python src/evaluation/evaluate.py --model saved_models/best_model.h5
-
-# 6. Lanciare la demo Gradio
+# 5. Lanciare la demo
 python demo/app.py
 ```
 
 ---
 
-## 🎥 Video Teaser
+## Note
 
-[Se presente, inserire link o indicare il percorso: `video/teaser.mp4`]
-
----
-
-## 📚 Riferimenti
-
-- [Autore, "Titolo paper", Conferenza/Journal, Anno](link)
-- [Documentazione framework utilizzato](link)
-
----
-
-## ⚖️ Note
-
-- Tutto il codice esterno è citato con la relativa fonte.
 - Il progetto rispetta le norme dell'[ACM Code of Ethics](https://www.acm.org/code-of-ethics).
